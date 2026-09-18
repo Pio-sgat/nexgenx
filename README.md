@@ -1,4 +1,4 @@
-# NEXTGENX
+# NEXGENX
 
 A small Flask app for collecting and storing project details.
 
@@ -12,4 +12,4 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Open http://127.0.0.1:5000. Submitted details are stored in `nextgenx.db`; attachments are saved in `uploads/`.
+Open http://127.0.0.1:5000. Submitted details are stored in `nexgenx.db`; attachments are saved in `uploads/`.

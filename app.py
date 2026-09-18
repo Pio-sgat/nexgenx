@@ -8,12 +8,12 @@ from werkzeug.utils import secure_filename
 
 
 BASE_DIR = Path(__file__).resolve().parent
-DATABASE = BASE_DIR / "nextgenx.db"
+DATABASE = BASE_DIR / "nexgenx.db"
 UPLOAD_FOLDER = BASE_DIR / "uploads"
 ALLOWED_EXTENSIONS = {"pdf", "doc", "docx", "xls", "xlsx", "png", "jpg", "jpeg", "zip"}
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = os.environ.get("NEXTGENX_SECRET_KEY", "nextgenx-development-key")
+app.config["SECRET_KEY"] = os.environ.get("NEXGENX_SECRET_KEY", "nexgenx-development-key")
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
 

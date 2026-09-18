@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>NEXTGENX | Project workspace</title>
+  <title>NEXGENX | Project workspace</title>
   <style>
     :root {
       --ink: #10252b;
@@ -96,7 +96,7 @@
 <body>
   <div class="page-shell">
     <header class="topbar">
-      <div class="brand"><span class="brand-mark"><i></i><i></i><i></i></span> NEXTGENX</div>
+      <div class="brand"><span class="brand-mark"><i></i><i></i><i></i></span> NEXGENX</div>
       <div class="topbar-note"><span class="pulse"></span> Project intake portal</div>
     </header>
 
@@ -105,7 +105,7 @@
         <div>
           <p class="eyebrow">BUILD WHAT'S NEXT</p>
           <h1>Bring your next<br><em>big idea</em> to life.</h1>
-          <p class="hero-copy">Share the details that move your project forward. Everything you submit is organized in your private NEXTGENX workspace.</p>
+          <p class="hero-copy">Share the details that move your project forward. Everything you submit is organized in your private NEXGENX workspace.</p>
         </div>
         <div class="hero-orbit" aria-hidden="true"><div class="orbit"></div><div class="orbit orbit-two"></div><div class="orbit-core">NX</div></div>
       </section>
@@ -149,7 +149,7 @@
         </aside>
       </section>
     </main>
-    <footer><span>© 2026 NEXTGENX</span><span>Make the future tangible.</span></footer>
+    <footer><span>© 2026 NEXGENX</span><span>Make the future tangible.</span></footer>
   </div>
 
   <script>
@@ -161,7 +161,7 @@
     const fileName = document.querySelector("#file-name");
 
     function getProjects() {
-      return JSON.parse(localStorage.getItem("nextgenx-projects") || "[]");
+      return JSON.parse(localStorage.getItem("nexgenx-projects") || "[]");
     }
 
     function renderProjects() {
@@ -193,7 +193,7 @@
       const data = Object.fromEntries(new FormData(form));
       const projects = getProjects();
       projects.unshift(data);
-      localStorage.setItem("nextgenx-projects", JSON.stringify(projects));
+      localStorage.setItem("nexgenx-projects", JSON.stringify(projects));
       form.reset();
       fileName.textContent = "Attach a project brief";
       notice.textContent = "Project details uploaded successfully.";
