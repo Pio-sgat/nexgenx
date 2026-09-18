@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NEXTGENX | Project workspace</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="{{ url_for('index') }}">
+          <span class="brand-mark"><i></i><i></i><i></i></span>
+          <span>NEXTGENX</span>
+        </a>
+        <div class="topbar-note"><span class="pulse"></span> Project intake portal</div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div>
+            <p class="eyebrow">BUILD WHAT'S NEXT</p>
+            <h1>Bring your next<br><em>big idea</em> to life.</h1>
+            <p class="hero-copy">Share the details that move your project forward. Everything you submit is organized in your private NEXTGENX workspace.</p>
+          </div>
+          <div class="hero-orbit" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="orbit-core">NX</div>
+          </div>
+        </section>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="messages">
+              {% for category, message in messages %}
+                <div class="alert {{ category }}">{{ message }}</div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <section class="content-grid">
+          <div class="form-card">
+            <div class="card-heading">
+              <div>
+                <p class="eyebrow">01 / PROJECT PROFILE</p>
+                <h2>Upload project details</h2>
+              </div>
+              <span class="required-note">* Required</span>
+            </div>
+            <form action="{{ url_for('upload_project') }}" method="post" enctype="multipart/form-data">
+              <div class="field-row">
+                <label>Project name <span>*</span>
+                  <input type="text" name="project_name" placeholder="e.g. Aurora Labs" required>
+                </label>
+                <label>Category <span>*</span>
+                  <select name="category" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <option>Web &amp; product</option>
+                    <option>Mobile application</option>
+                    <option>Brand &amp; creative</option>
+                    <option>Research &amp; innovation</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+              </div>
+              <div class="field-row">
+                <label>Current status <span>*</span>
+                  <select name="status" required>
+                    <option value="" disabled selected>Where are you now?</option>
+                    <option>Idea stage</option>
+                    <option>In planning</option>
+                    <option>In progress</option>
+                    <option>Ready to launch</option>
+                  </select>
+                </label>
+                <label>Target start date
+                  <input type="date" name="start_date">
+                </label>
+              </div>
+              <label>Project vision <span>*</span>
+                <textarea name="description" rows="5" placeholder="Tell us what you're building, who it's for, and what success looks like." required></textarea>
+              </label>
+              <div class="field-row">
+                <label>Estimated budget
+                  <input type="text" name="budget" placeholder="e.g. $10,000 – $25,000">
+                </label>
+                <label>Contact email <span>*</span>
+                  <input type="email" name="contact_email" placeholder="you@company.com" required>
+                </label>
+              </div>
+              <label class="file-drop" for="attachment">
+                <span class="upload-icon">↑</span>
+                <span><strong>Attach a project brief</strong><small>PDF, DOCX, XLSX, images or ZIP · max 16 MB</small></span>
+                <input id="attachment" type="file" name="attachment" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.zip">
+                <span class="browse">Browse</span>
+              </label>
+              <button class="submit-button" type="submit"><span>Submit project</span><b>↗</b></button>
+            </form>
+          </div>
+
+          <aside class="side-panel">
+            <div class="side-heading">
+              <p class="eyebrow">02 / YOUR PIPELINE</p>
+              <span class="project-count">{{ projects|length }} total</span>
+            </div>
+            {% if projects %}
+              <div class="project-list">
+                {% for project in projects %}
+                  <article class="project-item">
+                    <div class="project-symbol">{{ project.project_name[:1]|upper }}</div>
+                    <div class="project-meta">
+                      <h3>{{ project.project_name }}</h3>
+                      <p>{{ project.category }} <span>·</span> {{ project.status }}</p>
+                    </div>
+                    <span class="status-dot"></span>
+                  </article>
+                {% endfor %}
+              </div>
+            {% else %}
+              <div class="empty-state">
+                <div class="empty-icon">+</div>
+                <h3>Your pipeline is empty</h3>
+                <p>Submit your first project and it will appear here.</p>
+              </div>
+            {% endif %}
+            <div class="side-footer"><span>SECURE WORKSPACE</span><span>NX / 001</span></div>
+          </aside>
+        </section>
+      </main>
+      <footer><span>© 2026 NEXTGENX</span><span>Make the future tangible.</span></footer>
+    </div>
+    <script>
+      const fileInput = document.querySelector("#attachment");
+      const fileLabel = document.querySelector(".file-drop strong");
+      fileInput.addEventListener("change", () => {
+        if (fileInput.files.length) fileLabel.textContent = fileInput.files[0].name;
+      });
+    </script>
+  </body>
+</html>

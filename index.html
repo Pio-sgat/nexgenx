@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXTGENX | Project workspace</title>
+  <style>
+    :root {
+      --ink: #10252b;
+      --muted: #718388;
+      --line: #dfe8e7;
+      --mint: #b9f4dd;
+      --mint-dark: #27b981;
+      --cream: #f7faf7;
+      --white: #fff;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--cream); font-family: Arial, sans-serif; }
+    .page-shell { max-width: 1280px; margin: auto; padding: 0 6vw; }
+    .topbar { height: 88px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: center; gap: 11px; color: var(--ink); font-size: 15px; font-weight: 800; letter-spacing: .15em; }
+    .brand-mark { display: flex; align-items: end; gap: 3px; height: 19px; }
+    .brand-mark i { display: block; width: 4px; background: var(--mint-dark); border-radius: 3px; }
+    .brand-mark i:nth-child(1) { height: 10px; }
+    .brand-mark i:nth-child(2) { height: 16px; }
+    .brand-mark i:nth-child(3) { height: 6px; }
+    .topbar-note, .project-count, .required-note, .eyebrow, .side-footer, footer {
+      color: var(--muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .pulse { display: inline-block; width: 7px; height: 7px; margin-right: 8px; background: var(--mint-dark); border-radius: 50%; }
+    .hero { min-height: 330px; display: flex; align-items: center; justify-content: space-between; }
+    .eyebrow { margin: 0 0 18px; color: var(--mint-dark); }
+    h1 { margin: 0; font-size: clamp(42px, 5.5vw, 76px); line-height: .98; letter-spacing: -.06em; font-weight: 700; }
+    h1 em { color: var(--mint-dark); font-style: normal; }
+    .hero-copy { max-width: 430px; margin: 27px 0 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .hero-orbit { position: relative; width: 220px; height: 220px; margin-right: 7%; }
+    .orbit { position: absolute; inset: 0; border: 1px solid #cde4db; border-radius: 50%; transform: rotate(-25deg) scaleY(.38); }
+    .orbit-two { transform: rotate(58deg) scaleY(.38); border-color: #b8dfd0; }
+    .orbit-core { position: absolute; inset: 75px; display: grid; place-items: center; color: var(--ink); background: var(--mint); border-radius: 50%; font-size: 13px; box-shadow: 0 0 0 14px rgba(185,244,221,.32); }
+    .content-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, .8fr); gap: 24px; padding-bottom: 100px; }
+    .form-card, .side-panel { background: var(--white); border: 1px solid var(--line); border-radius: 3px; }
+    .form-card { padding: 38px 42px 42px; }
+    .card-heading, .side-heading { display: flex; justify-content: space-between; align-items: start; }
+    h2 { margin: 0 0 34px; font-size: 24px; letter-spacing: -.04em; }
+    label { display: block; margin-bottom: 22px; color: var(--ink); font-size: 12px; font-weight: 700; }
+    label > span { color: var(--mint-dark); }
+    input, select, textarea { display: block; width: 100%; margin-top: 9px; padding: 14px 15px; border: 1px solid var(--line); border-radius: 2px; outline: none; color: var(--ink); background: #fbfdfb; font: 13px Arial, sans-serif; }
+    textarea { resize: vertical; min-height: 120px; line-height: 1.6; }
+    input:focus, select:focus, textarea:focus { border-color: var(--mint-dark); box-shadow: 0 0 0 3px rgba(39,185,129,.12); }
+    input::placeholder, textarea::placeholder { color: #a6b3b4; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .file-drop { display: flex; align-items: center; gap: 13px; min-height: 70px; padding: 14px 17px; border: 1px dashed #b9d6cd; background: #fbfefc; cursor: pointer; }
+    .file-drop input { display: none; }
+    .upload-icon { color: var(--mint-dark); font-size: 25px; }
+    .file-drop strong, .file-drop small { display: block; }
+    .file-drop strong { color: var(--ink); font-size: 12px; }
+    .file-drop small { margin-top: 4px; color: var(--muted); font-size: 10px; font-weight: 400; }
+    .browse { margin-left: auto; color: var(--mint-dark); font-size: 11px; }
+    .submit-button { display: flex; width: 100%; justify-content: space-between; align-items: center; margin-top: 7px; padding: 17px 18px; border: 0; color: var(--ink); background: var(--mint); cursor: pointer; font-weight: 700; }
+    .submit-button:hover { background: #8de9c6; transform: translateY(-2px); }
+    .submit-button b { font-size: 18px; font-weight: 400; }
+    .side-panel { display: flex; min-height: 420px; flex-direction: column; padding: 30px 25px 21px; }
+    .side-heading { padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+    .side-heading .eyebrow { margin: 0; }
+    .project-list { flex: 1; }
+    .project-item { display: flex; align-items: center; gap: 11px; padding: 17px 0; border-bottom: 1px solid #edf2f0; }
+    .project-symbol { display: grid; width: 33px; height: 33px; place-items: center; color: var(--mint-dark); background: #e8faf2; font-size: 13px; }
+    .project-meta { min-width: 0; flex: 1; }
+    .project-meta h3 { overflow: hidden; margin: 0 0 5px; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+    .project-meta p { margin: 0; color: var(--muted); font-size: 10px; }
+    .project-meta p span { padding: 0 3px; color: var(--mint-dark); }
+    .status-dot { width: 6px; height: 6px; background: var(--mint-dark); border-radius: 50%; }
+    .empty-state { flex: 1; display: flex; min-height: 250px; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .empty-icon { display: grid; width: 38px; height: 38px; place-items: center; margin-bottom: 13px; border: 1px solid #cde6db; border-radius: 50%; color: var(--mint-dark); font-size: 20px; }
+    .empty-state h3 { margin: 0 0 7px; font-size: 13px; }
+    .empty-state p { max-width: 170px; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .side-footer, footer { display: flex; justify-content: space-between; }
+    .side-footer { padding-top: 20px; }
+    .notice { display: none; margin: -20px 0 24px; padding: 13px 17px; border-left: 3px solid var(--mint-dark); background: #e8faf2; font-size: 12px; }
+    .notice.show { display: block; }
+    footer { padding: 20px 0 35px; border-top: 1px solid var(--line); }
+    @media (max-width: 800px) {
+      .hero { min-height: 290px; }
+      .hero-orbit { display: none; }
+      .content-grid { grid-template-columns: 1fr; }
+      .form-card { padding: 28px 22px; }
+    }
+    @media (max-width: 500px) {
+      .topbar-note { display: none; }
+      .field-row { grid-template-columns: 1fr; gap: 0; }
+      .hero { min-height: 270px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark"><i></i><i></i><i></i></span> NEXTGENX</div>
+      <div class="topbar-note"><span class="pulse"></span> Project intake portal</div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">BUILD WHAT'S NEXT</p>
+          <h1>Bring your next<br><em>big idea</em> to life.</h1>
+          <p class="hero-copy">Share the details that move your project forward. Everything you submit is organized in your private NEXTGENX workspace.</p>
+        </div>
+        <div class="hero-orbit" aria-hidden="true"><div class="orbit"></div><div class="orbit orbit-two"></div><div class="orbit-core">NX</div></div>
+      </section>
+
+      <div id="notice" class="notice" role="status"></div>
+
+      <section class="content-grid">
+        <div class="form-card">
+          <div class="card-heading">
+            <div><p class="eyebrow">01 / PROJECT PROFILE</p><h2>Upload project details</h2></div>
+            <span class="required-note">* Required</span>
+          </div>
+          <form id="project-form">
+            <div class="field-row">
+              <label>Project name <span>*</span><input name="projectName" placeholder="e.g. Aurora Labs" required></label>
+              <label>Category <span>*</span><select name="category" required><option value="">Select a category</option><option>Web & product</option><option>Mobile application</option><option>Brand & creative</option><option>Research & innovation</option><option>Other</option></select></label>
+            </div>
+            <div class="field-row">
+              <label>Current status <span>*</span><select name="status" required><option value="">Where are you now?</option><option>Idea stage</option><option>In planning</option><option>In progress</option><option>Ready to launch</option></select></label>
+              <label>Target start date<input name="startDate" type="date"></label>
+            </div>
+            <label>Project vision <span>*</span><textarea name="description" placeholder="Tell us what you're building, who it's for, and what success looks like." required></textarea></label>
+            <div class="field-row">
+              <label>Estimated budget<input name="budget" placeholder="e.g. $10,000 - $25,000"></label>
+              <label>Contact email <span>*</span><input name="email" type="email" placeholder="you@company.com" required></label>
+            </div>
+            <label class="file-drop" for="attachment">
+              <span class="upload-icon">↑</span>
+              <span><strong id="file-name">Attach a project brief</strong><small>PDF, DOCX, XLSX, images or ZIP · max 16 MB</small></span>
+              <input id="attachment" name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.zip">
+              <span class="browse">Browse</span>
+            </label>
+            <button class="submit-button" type="submit"><span>Submit project</span><b>↗</b></button>
+          </form>
+        </div>
+
+        <aside class="side-panel">
+          <div class="side-heading"><p class="eyebrow">02 / YOUR PIPELINE</p><span id="project-count" class="project-count">0 total</span></div>
+          <div id="project-list" class="project-list"></div>
+          <div class="side-footer"><span>SECURE WORKSPACE</span><span>NX / 001</span></div>
+        </aside>
+      </section>
+    </main>
+    <footer><span>© 2026 NEXTGENX</span><span>Make the future tangible.</span></footer>
+  </div>
+
+  <script>
+    const form = document.querySelector("#project-form");
+    const list = document.querySelector("#project-list");
+    const count = document.querySelector("#project-count");
+    const notice = document.querySelector("#notice");
+    const fileInput = document.querySelector("#attachment");
+    const fileName = document.querySelector("#file-name");
+
+    function getProjects() {
+      return JSON.parse(localStorage.getItem("nextgenx-projects") || "[]");
+    }
+
+    function renderProjects() {
+      const projects = getProjects();
+      count.textContent = `${projects.length} total`;
+      if (!projects.length) {
+        list.innerHTML = '<div class="empty-state"><div class="empty-icon">+</div><h3>Your pipeline is empty</h3><p>Submit your first project and it will appear here.</p></div>';
+        return;
+      }
+      list.innerHTML = projects.map(project => `
+        <article class="project-item">
+          <div class="project-symbol">${project.projectName.charAt(0).toUpperCase()}</div>
+          <div class="project-meta"><h3>${escapeHtml(project.projectName)}</h3><p>${escapeHtml(project.category)} <span>·</span> ${escapeHtml(project.status)}</p></div>
+          <span class="status-dot"></span>
+        </article>
+      `).join("");
+    }
+
+    function escapeHtml(value) {
+      return value.replace(/[&<>"']/g, character => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" })[character]);
+    }
+
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length) fileName.textContent = fileInput.files[0].name;
+    });
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      const projects = getProjects();
+      projects.unshift(data);
+      localStorage.setItem("nextgenx-projects", JSON.stringify(projects));
+      form.reset();
+      fileName.textContent = "Attach a project brief";
+      notice.textContent = "Project details uploaded successfully.";
+      notice.classList.add("show");
+      renderProjects();
+      setTimeout(() => notice.classList.remove("show"), 4000);
+    });
+
+    renderProjects();
+  </script>
+</body>
+</html>
