@@ -16,7 +16,7 @@
           <span class="brand-mark"><i></i><i></i><i></i></span>
           <span>NEXGENX</span>
         </a>
-        <div class="topbar-note"><span class="pulse"></span> Project intake portal</div>
+        <div class="topbar-note"><span class="pulse"></span> Public project showcase</div>
       </header>
 
       <main>
@@ -24,7 +24,7 @@
           <div>
             <p class="eyebrow">BUILD WHAT'S NEXT</p>
             <h1>Bring your next<br><em>big idea</em> to life.</h1>
-            <p class="hero-copy">Share the details that move your project forward. Everything you submit is organized in your private NEXGENX workspace.</p>
+            <p class="hero-copy">Explore the ideas, experiments, and finished work that make up the NEXGENX project collection.</p>
           </div>
           <div class="hero-orbit" aria-hidden="true">
             <div class="orbit orbit-one"></div>
@@ -48,7 +48,7 @@
             <div class="card-heading">
               <div>
                 <p class="eyebrow">01 / PROJECT PROFILE</p>
-                <h2>Upload project details</h2>
+                <h2>Project information</h2>
               </div>
               <span class="required-note">* Required</span>
             </div>
@@ -95,18 +95,18 @@
               </div>
               <label class="file-drop" for="attachment">
                 <span class="upload-icon">↑</span>
-                <span><strong>Attach a project brief</strong><small>PDF, DOCX, XLSX, images or ZIP · max 16 MB</small></span>
+                <span><strong>Add project reference</strong><small>PDF, DOCX, XLSX, images or ZIP · max 16 MB</small></span>
                 <input id="attachment" type="file" name="attachment" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.zip">
                 <span class="browse">Browse</span>
               </label>
-              <button class="submit-button" type="submit"><span>Submit project</span><b>↗</b></button>
+              <button class="submit-button" type="submit"><span>Add to public showcase</span><b>↗</b></button>
             </form>
           </div>
 
           <aside class="side-panel">
             <div class="side-heading">
-              <p class="eyebrow">02 / YOUR PIPELINE</p>
-              <span class="project-count">{{ projects|length }} total</span>
+              <p class="eyebrow">02 / PUBLIC PROJECTS</p>
+              <span class="project-count">{{ projects|length }} projects</span>
             </div>
             {% if projects %}
               <div class="project-list">
@@ -124,8 +124,8 @@
             {% else %}
               <div class="empty-state">
                 <div class="empty-icon">+</div>
-                <h3>Your pipeline is empty</h3>
-                <p>Submit your first project and it will appear here.</p>
+                <h3>No projects published yet</h3>
+                <p>Published NEXGENX projects will appear here for everyone to explore.</p>
               </div>
             {% endif %}
             <div class="side-footer"><span>SECURE WORKSPACE</span><span>NX / 001</span></div>

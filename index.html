@@ -97,7 +97,7 @@
   <div class="page-shell">
     <header class="topbar">
       <div class="brand"><span class="brand-mark"><i></i><i></i><i></i></span> NEXGENX</div>
-      <div class="topbar-note"><span class="pulse"></span> Project intake portal</div>
+      <div class="topbar-note"><span class="pulse"></span> Public project showcase</div>
     </header>
 
     <main>
@@ -105,7 +105,7 @@
         <div>
           <p class="eyebrow">BUILD WHAT'S NEXT</p>
           <h1>Bring your next<br><em>big idea</em> to life.</h1>
-          <p class="hero-copy">Share the details that move your project forward. Everything you submit is organized in your private NEXGENX workspace.</p>
+          <p class="hero-copy">Explore the ideas, experiments, and finished work that make up the NEXGENX project collection.</p>
         </div>
         <div class="hero-orbit" aria-hidden="true"><div class="orbit"></div><div class="orbit orbit-two"></div><div class="orbit-core">NX</div></div>
       </section>
@@ -115,7 +115,7 @@
       <section class="content-grid">
         <div class="form-card">
           <div class="card-heading">
-            <div><p class="eyebrow">01 / PROJECT PROFILE</p><h2>Upload project details</h2></div>
+            <div><p class="eyebrow">01 / PROJECT PROFILE</p><h2>Project information</h2></div>
             <span class="required-note">* Required</span>
           </div>
           <form id="project-form">
@@ -134,16 +134,16 @@
             </div>
             <label class="file-drop" for="attachment">
               <span class="upload-icon">↑</span>
-              <span><strong id="file-name">Attach a project brief</strong><small>PDF, DOCX, XLSX, images or ZIP · max 16 MB</small></span>
+              <span><strong id="file-name">Add project reference</strong><small>PDF, DOCX, XLSX, images or ZIP · max 16 MB</small></span>
               <input id="attachment" name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.zip">
               <span class="browse">Browse</span>
             </label>
-            <button class="submit-button" type="submit"><span>Submit project</span><b>↗</b></button>
+            <button class="submit-button" type="submit"><span>Add to public showcase</span><b>↗</b></button>
           </form>
         </div>
 
         <aside class="side-panel">
-          <div class="side-heading"><p class="eyebrow">02 / YOUR PIPELINE</p><span id="project-count" class="project-count">0 total</span></div>
+          <div class="side-heading"><p class="eyebrow">02 / PUBLIC PROJECTS</p><span id="project-count" class="project-count">0 projects</span></div>
           <div id="project-list" class="project-list"></div>
           <div class="side-footer"><span>SECURE WORKSPACE</span><span>NX / 001</span></div>
         </aside>
@@ -168,7 +168,7 @@
       const projects = getProjects();
       count.textContent = `${projects.length} total`;
       if (!projects.length) {
-        list.innerHTML = '<div class="empty-state"><div class="empty-icon">+</div><h3>Your pipeline is empty</h3><p>Submit your first project and it will appear here.</p></div>';
+        list.innerHTML = '<div class="empty-state"><div class="empty-icon">+</div><h3>No projects published yet</h3><p>Published NEXGENX projects will appear here for everyone to explore.</p></div>';
         return;
       }
       list.innerHTML = projects.map(project => `
@@ -195,8 +195,8 @@
       projects.unshift(data);
       localStorage.setItem("nexgenx-projects", JSON.stringify(projects));
       form.reset();
-      fileName.textContent = "Attach a project brief";
-      notice.textContent = "Project details uploaded successfully.";
+      fileName.textContent = "Add project reference";
+      notice.textContent = "Project added to the public showcase.";
       notice.classList.add("show");
       renderProjects();
       setTimeout(() => notice.classList.remove("show"), 4000);

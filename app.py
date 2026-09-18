@@ -98,7 +98,7 @@ def upload_project():
             ),
         )
 
-    flash("Project details uploaded successfully.", "success")
+    flash("Project added to the public showcase.", "success")
     return redirect(url_for("index"))
 
 
